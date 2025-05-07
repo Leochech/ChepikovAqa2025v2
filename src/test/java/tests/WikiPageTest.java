@@ -1,12 +1,13 @@
 package tests;
 
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 import page.WikiPage;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 
 public class WikiPageTest {
 
@@ -22,7 +23,23 @@ public class WikiPageTest {
                 .setValueInInput("БФТ")
                 .clickSearchButton()
                 .checkLogoVisible(softAssertions)
-                .checkLogoAttribute(softAssertions,"alt", "Википедия");
+                .checkLogoAttribute(softAssertions, "alt", "Википедия");
         softAssertions.assertAll();
+    }
+
+//    @Test
+//    @DisplayName("Исключения")
+//    void exceptions() {
+//        System.out.println(null);
+//        Assertions.assertTrue(false);
+//    }
+
+    @Test
+    @DisplayName("Исключения обработка")
+    void exceptionsProcessing() {
+        Assertions.assertThrows(AssertionFailedError.class, () -> {
+            System.out.println((Object) null);
+            Assertions.assertTrue(false);
+        });
     }
 }
