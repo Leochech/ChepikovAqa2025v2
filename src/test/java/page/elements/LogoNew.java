@@ -5,11 +5,11 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class Logo {
+public class LogoNew {
 
     private final SelenideElement selector;
 
-    public Logo(String name, String selector) {
+    public LogoNew(String name, String selector) {
         this.selector = $x(selector);
     }
 

@@ -2,43 +2,43 @@ package page;
 
 import io.qameta.allure.Step;
 import org.assertj.core.api.SoftAssertions;
-import page.elements.Button;
-import page.elements.Input;
-import page.elements.Logo;
+import page.elements.ButtonNew;
+import page.elements.InputNew;
+import page.elements.LogoNew;
 
 public class WikiPage {
-    private final Input input = new Input("Поиск", "//*[@id=\"searchInput\"]");
-    private final Input inputValue = new Input("Поле ввода", "/html/body/div[5]/div/div[1]/div/div[1]/form/input[1]");
-    private final Button searchButton = new Button("Кнопка ввода", "/html/body/div[5]/div/div[2]/div/div[1]/div");
-    private final Logo logo = new Logo("Лого Википедии", "/html/body/div[1]/div/header/div/div/a/span/img");
+    private final InputNew inputNew = new InputNew("Поиск", "//*[@id=\"searchInput\"]");
+    private final InputNew inputNewValue = new InputNew("Поле ввода", "/html/body/div[5]/div/div[1]/div/div[1]/form/input[1]");
+    private final ButtonNew searchButtonNew = new ButtonNew("Кнопка ввода", "/html/body/div[5]/div/div[2]/div/div[1]/div");
+    private final LogoNew logoNew = new LogoNew("Лого Википедии", "/html/body/div[1]/div/header/div/div/a/span/img");
 
     @Step("Нажимаем на поиск")
     public WikiPage clickSearch() {
-        input.click();
+        inputNew.click();
         return this;
     }
 
     @Step("Вводим значение в поле ввода")
     public WikiPage setValueInInput(String value) {
-        inputValue.setValue(value);
+        inputNewValue.setValue(value);
         return this;
     }
 
     @Step("Нажимаем на кнопку поиска")
     public WikiPage clickSearchButton() {
-        searchButton.click();
+        searchButtonNew.click();
         return this;
     }
 
     @Step("Проверяем видимость лого")
     public WikiPage checkLogoVisible(SoftAssertions softAssertions) {
-        softAssertions.assertThat(logo.checkVisible()).isTrue();
+        softAssertions.assertThat(logoNew.checkVisible()).isTrue();
         return this;
     }
 
     @Step("Проверяем, что значение атрибута '{attribute}' логотипа — '{value}'")
     public WikiPage checkLogoAttribute(SoftAssertions softAssertions, String attribute, String value) {
-        String currentValue = logo.getCurrentValue(attribute);
+        String currentValue = logoNew.getCurrentValue(attribute);
         softAssertions.assertThat(currentValue).as("Атрибут '%s' логотипа", attribute).isEqualTo(value);
         return this;
     }
