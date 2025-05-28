@@ -6,6 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import page.WikiPage;
+import service.Box;
+import service.BoxesFilter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
 
@@ -27,13 +32,6 @@ public class WikiPageTest {
         softAssertions.assertAll();
     }
 
-//    @Test
-//    @DisplayName("Исключения")
-//    void exceptions() {
-//        System.out.println(null);
-//        Assertions.assertTrue(false);
-//    }
-
     @Test
     @DisplayName("Исключения обработка")
     void exceptionsProcessing() {
@@ -41,5 +39,25 @@ public class WikiPageTest {
             System.out.println((Object) null);
             Assertions.assertTrue(false);
         });
+    }
+
+    @Test
+    void boxFilterTask() {
+
+        BoxesFilter boxesFilter = new BoxesFilter();
+
+        List<Box> boxes = new ArrayList<>();
+        boxes.add(new Box(20, 30, 20));
+        boxes.add(new Box(25, 20, 15));
+        boxes.add(new Box(30, 30, 30));
+        boxes.add(new Box(35, 10, 50));
+        boxes.add(new Box(40, 25, 20));
+
+        System.out.println("Коробки до фильтрации:");
+        boxes.forEach(System.out::println);
+
+        List<Box> boxesFiltered = boxesFilter.boxesFilterByWidth(boxes, 30);
+        System.out.println("\nКоробки после фильтрации:");
+        boxesFiltered.forEach(System.out::println);
     }
 }
