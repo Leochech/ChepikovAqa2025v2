@@ -14,7 +14,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class WikiPageTest {
+public class WikiPageTestBackEnd {
 
     WikiPage wikiPage = new WikiPage();
     SoftAssertions softAssertions = new SoftAssertions();
